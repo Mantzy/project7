@@ -1,0 +1,98 @@
+.dark-bg {
+    background-color: #556573 !important;
+}
+
+.side-bg {
+    background-color: #556573;
+    border-radius: 1em;
+}
+
+.grey {
+    background-color: #B4C8D9;
+}
+
+.letter-light {
+    color: #F2DB94 !important;
+}
+
+.active {
+    border: 1px solid #BF861B;
+}
+
+.bg-white {
+    background-color: #ffffff !important;
+}
+
+.link-unstyled {
+    color: #F2DB94;
+    text-decoration: none;
+}
+
+.link-unstyled:hover {
+    color: #BF861B;
+    text-decoration: none;
+}
+
+.block {
+    display: block;
+    max-width: 100%;
+}
+
+table {
+    width: 100%;
+    border: 1px solid black;
+}
+
+th {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 15px;
+}
+
+.bi-cart {
+    color: #FFEBEB;
+}
+
+.fa-star {
+    color: #6CAD7E !important;
+}
+
+.no-border {
+    border: none !important;
+}
+
+.footy-sec.mn ul li {
+    border-color: #556573;
+    list-style: none;
+    display: inline-block;
+    padding: 0 10px;
+    border-right: 1px solid #FFEBEB;
+    vertical-align: baseline;
+    color: #F2DB94 !important;
+}
+
+.footer-bg {
+    background-color: #B4C8D9 !important;
+}
+
+.post {
+    border-radius: 1em;
+}
+
+.like {
+    font-size: 30px;
+}
+
+.socialM {
+    font-size: 50px;
+    color: #F2DB94;
+}
+
+.btn-color {
+    background-color: #F2DB94;
+    color: !important;
+}
+
+.commentStyle {
+    border-top: 1px solid #BF861B;
+}

@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link href="fontawsome/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/mdb-pro.min.css">
+    <link rel="stylesheet" type="text/css" href="css/mdb.ecommerce.min.css">
+
+    <link rel="shortcut icon" type="image/png" href="img/icon.png">
+    <title>GROUPOMANIA</title>
+</head>
+
+
+<body class="grey">
+    <!--- Header start-->
+    <header>
+        <div class="dark-bg">
+            <div class="container-fluid">
+                <!--- Navbar start-->
+                <div class="row">
+                    <nav class="col navbar navbar-expand-lg navbar-dark">
+
+
+
+
+
+
+                        <!-- Logo start -->
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <figure>
+                                <a class="navbar-brand" href="index.html">
+                                    <img src="img/small-icon.png" alt="GROUPOMANIA LOGO" class="w-50">
+                                </a>
+                            </figure>
+
+
+                        </div>
+                        <!--Logo end-->
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                          </button>
+                        <div id="navbarContent" class="collapse navbar-collapse">
+                            <ul class="navbar-nav font-weight-bold letter-light">
+                                <li class="nav-item">
+                                    <a class="nav-link letter-light" href="index.html">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link letter-light" href="post.html">Post</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link letter-light" href="login.html">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link letter-light" href="register.html">Register</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+
+                <!--- Navbar end-->
+            </div>
+        </div>
+    </header>
+
+    <!--- Header end-->
+    <!-- Body start-->
+
+    <body>
+        <div class="container-fluid">
+
+            <!--- Main Content start-->
+            <div class="container-fluid mt-2">
+
+                <div class="row">
+                    <!-- Left content start-->
+                    <section class="col-lg-3 side-bg p-2 ">
+                        <figure class=" text-center">
+                            <img src="img/cat.jpg" alt="Profile picture" class="rounded-circle">
+                        </figure>
+                        <section class="letter-light text-center font-weight-bold">
+                            <p>Jane Doe</p>
+                        </section>
+                        <section class="letter-light text-center">
+                            <p>jane.doe@email.ad</p>
+                        </section>
+                    </section>
+                    <!-- Left content end-->
+                    <!-- Post content start-->
+                    <section class="col-lg-7">
+
+                        <div class="post bg-white p-2 ">
+                            <div class="description m-2 text-center">
+                                <h3>Laughing sloth</h3>
+                            </div>
+                            <div class="name m-2 font-weight-bold text-right">
+                                by: Jane Doe
+
+                            </div>
+                            <div class="description m-2">
+                                <p>This is a funny post</p>
+                            </div>
+                            <figure class="text-center">
+                                <img src="gif/giphy.gif">
+                            </figure>
+                            <div class="like row m-2">
+                                <div class="col-lg-6">
+                                    <i class="far fa-heart"></i>
+                                    <!-- <i class="fas fa-heart"></i>-->
+                                </div>
+                                <div class="col-6 text-right">
+                                    <i class="far fa-comments"></i>
+                                </div>
+                            </div>
+                            <!-- comment start-->
+                            <!--post comment start-->
+                            <div>
+                                <form>
+                                    <div class="form-group">
+                                        <label for="commentText">Write your comment here:</label>
+                                        <textarea class="form-control" id="commentText" rows="3"></textarea>
+                                    </div>
+                                    <div class="text-right">
+                                        <button type="submit" class="btn btn-color">COMMENT</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!--post comment end-->
+                            <!-- comment section start-->
+                            <div class="comments m-2">
+                                <!-- single comment start-->
+                                <div class="comment1 m-3 commentStyle p-1">
+                                    <div>
+                                        <p class="font-weight-bold">Jon Doe</p>
+                                    </div>
+                                    <div>
+                                        <p> I really like it!</p>
+                                    </div>
+                                </div>
+                                <!-- single comment end-->
+
+                                <!-- single comment start-->
+                                <div class="comment1 m-3 commentStyle p-1">
+                                    <div>
+                                        <p class="font-weight-bold">Jessica Smith</p>
+                                    </div>
+                                    <div>
+                                        <p>Just like me today</p>
+                                    </div>
+                                </div>
+                                <!-- single comment end-->
+                            </div>
+                            <!-- comment section end-->
+                            <!-- comment end-->
+                        </div>
+
+                    </section>
+                    <!-- Post content end-->
+                    <section class="col-lg-2 side-bg p-2 socialM text-center">
+                        <h3>You can find us everywhere!</h3>
+                        <i class="fab fa-facebook-square m-3"></i>
+                        <i class="fab fa-twitter-square m-3"></i>
+                        <i class="fab fa-instagram-square m-3"></i>
+                        <i class="fab fa-pinterest-square m-3"></i>
+                        <i class="fab fa-youtube-square m-3"></i>
+                        <i class="fab fa-linkedin m-3"></i>
+                    </section>
+
+
+                </div>
+                <!--- Main Content end-->
+
+            </div>
+        </div>
+    </body>
+    <!-- Body end-->
+    <!--- Footer start-->
+    <footer class="dark-bg mt-2">
+        <div class="footy-sec mn no-margins text-center">
+            <ul class="p-1">
+                <li>
+                    <a href="#" class="link-unstyled">Help</a>
+                </li>
+                <li>
+                    <a href="#" class="link-unstyled">About</a>
+                </li>
+                <li>
+                    <a href="#" class="link-unstyled">Privacy Policy</a>
+                </li>
+                <li>
+                    <a href="#" class="link-unstyled">Company Policy</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </footer>
+    <!--- Footer end-->
+
+</body>
+
+
+</html>
