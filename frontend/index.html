@@ -23,7 +23,7 @@
 <body class="grey">
     <!--- Header start-->
     <header>
-        <div class="dark-bg">
+        <div class="dark-bg" id="app">
             <div class="container-fluid">
                 <!--- Navbar start-->
                 <div class="row">
@@ -172,6 +172,32 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div v-for="item in posts" class="post bg-white p-2 m-3">
+                            <div class="description m-2 text-center">
+                                <h3>{{ item.title }}</h3>
+                            </div>
+                            <div class="name m-2 font-weight-bold text-right">
+                                by: {{ item.author }}
+
+                            </div>
+                            <div class="description m-2">
+                                <p>{{ item.postDescription }}</p>
+                            </div>
+                            <figure class="text-center">
+                                <img :src="item.url">
+                            </figure>
+                            <div class="like row m-2">
+                                <div class="col-lg-6">
+                                    <i class="far fa-heart"></i>
+                                    <!-- <i class="fas fa-heart"></i>-->
+                                </div>
+                                <div class="col-6 text-right">
+                                    <a href="comment.html" class="link-unstyled"> <i class="far fa-comments"></i></a>
+
+                                </div>
+                            </div>
+                        </div>
                     </section>
 
                     <!-- Post content end-->
@@ -214,8 +240,26 @@
 
         </div>
     </footer>
-    <!--- Footer end-->
+
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app'
+            data: {
+                posts: [{
+                    title: 'Laughing sloth',
+                    author: 'Jane Doe',
+                    postDescription: 'This is a funny post',
+                    url: 'gif/giphy.gif'
+                }, {
+                    title: 'Kitty',
+                    author: 'Joe Doe',
+                    postDescription: 'This is a funny post',
+                    url: 'gif/funny-cat-gifs13.gif'
+                }]
+            }
+        });
+    </script>
 </body>
 
 
