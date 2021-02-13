@@ -1,12 +1,88 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+<div>
+  <Navbar v-if="$route.name !='Login' && $route.name !='Register'">
+
+
+  </Navbar>
+
+  <div class="container-fluid">
+
+            <!--- Main Content start-->
+            <div class="container-fluid mt-2">
+
+                <div class="row">
+                    <!-- Left content start-->
+                    <section class="col-lg-3 side-bg p-2 " >
+                        <figure class=" text-center" >
+                            <img src="img/cat.jpg" alt="Profile picture" class="rounded-circle">
+                        </figure>
+                        <section class="letter-light text-center font-weight-bold">
+                            <p>Jane Doe</p>
+                        </section>
+                        <section class="letter-light text-center">
+                            <p>jane.doe@email.ad</p>
+                        </section>
+                    </section>
+                    <!-- Left content end-->
+                    <!-- Post content start-->
+                      <router-view/>
+                    
+
+                    <!-- Post content end-->
+                    <section class="col-lg-2 side-bg p-2 socialM text-center">
+                        <h3>You can find us everywhere!</h3>
+                        <i class="fab fa-facebook-square m-3"></i>
+                        <i class="fab fa-twitter-square m-3"></i>
+                        <i class="fab fa-instagram-square m-3"></i>
+                        <i class="fab fa-pinterest-square m-3"></i>
+                        <i class="fab fa-youtube-square m-3"></i>
+                        <i class="fab fa-linkedin m-3"></i>
+                    </section>
+
+
+                </div>
+                <!--- Main Content end-->
+
+            </div>
+        </div>
+  
+    <!--- Footer start-->
+    <footer class="dark-bg mt-2">
+        <div class="footy-sec mn no-margins text-center">
+            <ul class="p-1">
+                <li>
+                    <a href="#" class="link-unstyled">Help</a>
+                </li>
+                <li>
+                    <a href="#" class="link-unstyled">About</a>
+                </li>
+                <li>
+                    <a href="#" class="link-unstyled">Privacy Policy</a>
+                </li>
+                <li>
+                    <a href="#" class="link-unstyled">Company Policy</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </footer>
+</div>
 </template>
+
+
+<script>
+// @ is an alias to /src
+import Navbar from '@/components/Navbar.vue'
+
+ export default {
+  name: 'App',
+  components: {
+    Navbar
+  }
+}
+</script>
+
 
 <style>
 #app {
