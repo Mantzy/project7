@@ -17,6 +17,9 @@
                                 <div class="text-right">
                                     <button type="submit" class="btn btn-color">LOGIN</button>
                                 </div>
+                                                                <div class="text-right">
+                                    <p>Don't have an account yet? <router-link to="/register">Sign up here</router-link></p>
+                                </div>
                             </form>
                         </div>
                     </section>

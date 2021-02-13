@@ -24,6 +24,9 @@
                                 <div class="text-right">
                                     <button type="submit" class="btn btn-color">Register</button>
                                 </div>
+                                                                                                <div class="text-right">
+                                    <p>Already a member? <router-link to="/login">Log in here</router-link></p>
+                                </div>
                             </form>
                         </div>
                     </section>

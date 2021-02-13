@@ -13,16 +13,14 @@
                                 <p>This is a funny post</p>
                             </div>
                             <figure class="text-center">
-                                <img src="gif/giphy.gif">
+                                <img src="gif/giphy.gif" class=" mw-100">
                             </figure>
                             <div class="like row m-2">
-                                <div class="col-lg-6">
+                                <div class="col-6 mw-45">
                                     <i class="far fa-heart"></i>
                                     <!-- <i class="fas fa-heart"></i>-->
                                 </div>
-                                <div class="col-6 text-right">
-                                    <i class="far fa-comments"></i>
-                                </div>
+
                             </div>
                             <!-- comment start-->
                             <!--post comment start-->

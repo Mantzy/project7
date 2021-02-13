@@ -13,14 +13,14 @@
                                 <p>This is a funny post</p>
                             </div>
                             <figure class="text-center">
-                                <img src="gif/giphy.gif">
+                                <img src="gif/giphy.gif" class=" mw-100">
                             </figure>
                             <div class="like row m-2">
-                                <div class="col-lg-6">
+                                <div class="col-6 mw-45">
                                     <i class="far fa-heart"></i>
                                     <!-- <i class="fas fa-heart"></i>-->
                                 </div>
-                                <div class="col-6 text-right">
+                                <div class="col-6 mw-45 text-right">
                                     <router-link to="/comment" class="link-unstyled"> <i class="far fa-comments"></i></router-link>
 
                                 </div>
@@ -38,7 +38,7 @@
                                 <p>This is a funny post</p>
                             </div>
                             <figure class="text-center">
-                                <img src="gif/funny-cat-gifs13.gif">
+                                <img src="gif/funny-cat-gifs13.gif" class=" mw-100">
                             </figure>
                             <div class="like row m-2">
                                 <div class="col-lg-6">
@@ -62,7 +62,7 @@
                                 <p>This is a funny post</p>
                             </div>
                             <figure class="text-center">
-                                <img src="gif/puppy-19.gif">
+                                <img src="gif/puppy-19.gif" class=" mw-100">
                             </figure>
                             <div class="like row m-2">
                                 <div class="col-lg-6">

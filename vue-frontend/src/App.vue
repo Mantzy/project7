@@ -1,5 +1,6 @@
 <template>
 <div>
+    <body class="grey">
   <Navbar v-if="$route.name !='Login' && $route.name !='Register'">
 
 
@@ -13,6 +14,7 @@
                 <div class="row">
                     <!-- Left content start-->
                     <section class="col-lg-3 side-bg p-2 " >
+                        <div  v-if="$route.name !='Login' && $route.name !='Register'">
                         <figure class=" text-center" >
                             <img src="img/cat.jpg" alt="Profile picture" class="rounded-circle">
                         </figure>
@@ -22,6 +24,7 @@
                         <section class="letter-light text-center">
                             <p>jane.doe@email.ad</p>
                         </section>
+                        </div>
                     </section>
                     <!-- Left content end-->
                     <!-- Post content start-->
@@ -67,6 +70,7 @@
 
         </div>
     </footer>
+</body>
 </div>
 </template>
 
