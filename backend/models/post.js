@@ -3,14 +3,11 @@ const mongoose = require('mongoose');
 const postSchema = mongoose.Schema({
     //_id: { type: String, required: true },
     userId: { type: String, required: true },
-    name: { type: String, required: true },
     title: { type: String, required: true },
     description: { type: String, required: true },
-    imageUrl: { type: String, required: true },
-    likes: { type: Number, required: true },
-    dislikes: { type: Number, required: true },
-    usersLiked: { type: [String], required: true },
-    usersDisliked: { type: [String], required: true }
+    imageUrl: { type: String, required: false },
+    likes: { type: Number, required: false },
+    usersLiked: { type: [String], required: false }
 
 
 });

@@ -87,6 +87,20 @@ export default {
   name: 'Home',
   components: {
 
+  },
+
+
+
+beforeMount(){
+    this.isAuthenticated()
+},
+
+  methods: {
+  isAuthenticated() {
+    if (localStorage.getItem("token") == null){
+        window.location.href="#/login"
+    }
+}
   }
 }
 </script>

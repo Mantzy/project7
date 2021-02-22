@@ -35,12 +35,9 @@
                                     <router-link to="/post" class="nav-link letter-light"> Post
                     </router-link>
                                 </li>
+                                
                                 <li class="nav-item">
-                                     <router-link to="/login" class="nav-link letter-light"> Login
-                    </router-link>
-                                </li>
-                                <li class="nav-item">
-                                     <router-link to="/register" class="nav-link letter-light"> Register
+                                     <router-link to="/login" class="nav-link letter-light"> Logout
                     </router-link>
                                 </li>
 

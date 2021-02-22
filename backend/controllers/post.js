@@ -6,14 +6,11 @@ exports.createPost = (req, res, next) => {
     req.body.post = JSON.parse(req.body.post);
     const url = req.protocol + '://' + req.get('host');
     const post = new Post({
-        name: req.body.post.name,
         title: req.body.post.title,
         description: req.body.post.description,
         imageUrl: url + '/images/' + req.file.filename,
         likes: 0,
-        dislikes: 0,
         usersLiked: [''],
-        usersDisliked: [''],
         userId: req.body.post.userId
     });
     post.save().then(
@@ -58,9 +55,7 @@ exports.modifyPost = (req, res, next) => {
             description: req.body.post.description,
             imageUrl: url + '/images/' + req.file.filename,
             likes: 0,
-            dislikes: 0,
             usersLiked: [''],
-            usersDisliked: [''],
             userId: req.body.post.userId
         };
     } else {
@@ -69,9 +64,8 @@ exports.modifyPost = (req, res, next) => {
             title: req.body.post.title,
             description: req.body.post.description,
             likes: 0,
-            dislikes: 0,
             usersLiked: [''],
-            usersDisliked: [''],
+
             userId: req.body.post.userId
         };
     }

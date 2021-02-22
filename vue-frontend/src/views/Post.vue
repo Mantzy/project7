@@ -6,11 +6,11 @@
                             <form class="p-2">
                                 <div class="form-group">
                                     <label for="postTitle">Title</label>
-                                    <input type="text" class="form-control" id="postTitle" aria-describedby="titleHelp" placeholder="Post Title">
+                                    <input type="text" class="form-control" id="postTitle" aria-describedby="titleHelp" placeholder="Post Title"  v-model="form.title">
                                 </div>
                                 <div class="form-group">
                                     <label for="postDescription">Description</label>
-                                    <textarea class="form-control" id="postDescription" rows="3"></textarea>
+                                    <textarea class="form-control" id="postDescription" rows="3"  v-model="form.description"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <div class="form-group">
@@ -19,7 +19,7 @@
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-color">POST</button>
+                                    <button type="submit" class="btn btn-color"  @click="addPost()">POST</button>
                                 </div>
 
                             </form>
@@ -28,7 +28,36 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
+name: "addPost",
+
+data() {
+    return {
+      form: {
+        userId: localStorage.getItem("userId"),
+        title: "",
+        description: "",
+        imageUrl: "",
+      },
+    };
+  },
+
+  methods: {
+       addPost() {
+           axios.post("http://localhost:3000/api/posts", this.form, { headers: {
+        authorization: "Bearer " + localStorage.getItem("token")}}).then((response) => {
+        window.location.href="#/"
+                 console.log(response)
+
+
+
+})
+
+      }
+  }
+
 
 }
 </script>
