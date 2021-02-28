@@ -1,16 +1,16 @@
 <template>
    <section class="col-lg-7">
 
-                        <div class="post bg-white p-2 m-3">
+                        <div class="post bg-white p-2 m-3" v-for="post in posts" :key="post._id">
                             <div class="description m-2 text-center">
-                                <h3>Laughing sloth</h3>
+                                <h3>{{ post.title }}</h3>
                             </div>
                             <div class="name m-2 font-weight-bold text-right">
-                                by: Jane Doe
+                               by:
 
                             </div>
                             <div class="description m-2">
-                                <p>This is a funny post</p>
+                                <p>{{ post.description }}</p>
                             </div>
                             <figure class="text-center">
                                 <img src="gif/giphy.gif" class=" mw-100">
@@ -81,7 +81,7 @@
 
 <script>
 // @ is an alias to /src
-
+import axios from "axios";
 
 export default {
   name: 'Home',
@@ -89,18 +89,44 @@ export default {
 
   },
 
+data() {
+    return {
+      posts: {},
+
+    };
+  },
 
 
 beforeMount(){
-    this.isAuthenticated()
+    this.isAuthenticated();
+    this.loadPosts();
 },
+
 
   methods: {
   isAuthenticated() {
     if (localStorage.getItem("token") == null){
         window.location.href="#/login"
     }
+  },
+    loadPosts() {
+        axios.get("http://localhost:3000/api/posts/", { headers: {
+        authorization: "Bearer " + localStorage.getItem("token")}}).then((response) => {
+        this.posts = response.data;
+        
+        console.log(this.posts)
+
+
+
+
+})
+
+
+    }
 }
+
   }
-}
+
+
+
 </script>

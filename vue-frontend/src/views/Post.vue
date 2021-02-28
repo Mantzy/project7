@@ -3,7 +3,8 @@
 
                         <div class="post bg-white p-2 ">
                             <h3 class="text-center">Create a new post</h3>
-                            <form class="p-2">
+                            <form class="p-2" @submit.prevent="addPost">
+
                                 <div class="form-group">
                                     <label for="postTitle">Title</label>
                                     <input type="text" class="form-control" id="postTitle" aria-describedby="titleHelp" placeholder="Post Title"  v-model="form.title">
@@ -19,7 +20,7 @@
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-color"  @click="addPost()">POST</button>
+                                    <button type="submit" class="btn btn-color">POST</button>
                                 </div>
 
                             </form>
@@ -37,6 +38,7 @@ data() {
     return {
       form: {
         userId: localStorage.getItem("userId"),
+        user: JSON.parse(localStorage.getItem("user")),
         title: "",
         description: "",
         imageUrl: "",
@@ -46,9 +48,11 @@ data() {
 
   methods: {
        addPost() {
+
+           //console.log(this.form);
            axios.post("http://localhost:3000/api/posts", this.form, { headers: {
         authorization: "Bearer " + localStorage.getItem("token")}}).then((response) => {
-        window.location.href="#/"
+     window.location.href="#/"
                  console.log(response)
 
 

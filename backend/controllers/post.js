@@ -3,15 +3,17 @@ const Post = require('../models/post');
 const fs = require('fs');
 
 exports.createPost = (req, res, next) => {
-    req.body.post = JSON.parse(req.body.post);
+
+    // req.body = JSON.parse(req.body);
     const url = req.protocol + '://' + req.get('host');
     const post = new Post({
-        title: req.body.post.title,
-        description: req.body.post.description,
-        imageUrl: url + '/images/' + req.file.filename,
+        title: req.body.title,
+        description: req.body.description,
+        //imageUrl: url + '/images/' + req.file.filename,
         likes: 0,
         usersLiked: [''],
-        userId: req.body.post.userId
+        userId: req.body.userId,
+        user: req.body.user
     });
     post.save().then(
         () => {

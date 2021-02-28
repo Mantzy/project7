@@ -50,6 +50,8 @@ beforeMount(){
            axios.post("http://localhost:3000/api/auth/login", this.form).then((response) => {
             localStorage.setItem("token", response.data.token)
             localStorage.setItem("userId", response.data.userId)
+            localStorage.setItem("user", JSON.stringify(response.data.user))
+
 
         window.location.href="#/"
                  console.log(response)
