@@ -1,7 +1,7 @@
 <template>
 <section class="col-lg-7">
 
-                        <div class="post bg-white p-2 ">
+                        <div class="post bg-white p-2   moveInUp-enter-active">
                             <div class="description m-2 text-center">
                                 <h3>Laughing sloth</h3>
                             </div>

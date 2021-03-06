@@ -1,6 +1,6 @@
 <template>
    <section class="col-lg-7">
-                        <div class="post bg-white p-2 ">
+                        <div class="post bg-white p-2  moveInUp-enter-active">
                             <h3 class="text-center">Sign up now!</h3>
                             <form>
                                 <div class="form-group">
