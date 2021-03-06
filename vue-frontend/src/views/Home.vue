@@ -6,7 +6,7 @@
                                 <h3>{{ post.title }}</h3>
                             </div>
                             <div class="name m-2 font-weight-bold text-right">
-                               by:
+                               by: {{ user.name }}
 
                             </div>
                             <div class="description m-2">
@@ -26,54 +26,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="post bg-white p-2 m-3">
-                            <div class="description m-2 text-center">
-                                <h3>Kitty</h3>
-                            </div>
-                            <div class="name m-2 font-weight-bold text-right">
-                                by: Joe Doe
-
-                            </div>
-                            <div class="description m-2">
-                                <p>This is a funny post</p>
-                            </div>
-                            <figure class="text-center">
-                                <img src="gif/funny-cat-gifs13.gif" class=" mw-100">
-                            </figure>
-                            <div class="like row m-2">
-                                <div class="col-lg-6">
-                                    <i class="far fa-heart"></i>
-                                    <!-- <i class="fas fa-heart"></i>-->
-                                </div>
-                                <div class="col-6 text-right">
-                                    <i class="far fa-comments"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post bg-white p-2 m-3">
-                            <div class="description m-2 text-center">
-                                <h3>Puppy</h3>
-                            </div>
-                            <div class="name m-2 font-weight-bold text-right">
-                                by: Jessica Smith
-
-                            </div>
-                            <div class="description m-2">
-                                <p>This is a funny post</p>
-                            </div>
-                            <figure class="text-center">
-                                <img src="gif/puppy-19.gif" class=" mw-100">
-                            </figure>
-                            <div class="like row m-2">
-                                <div class="col-lg-6">
-                                    <i class="far fa-heart"></i>
-                                    <!-- <i class="fas fa-heart"></i>-->
-                                </div>
-                                <div class="col-6 text-right">
-                                    <i class="far fa-comments"></i>
-                                </div>
-                            </div>
-                        </div>
+                        
+                        
 
                         
                     </section>
@@ -92,6 +46,7 @@ export default {
 data() {
     return {
       posts: {},
+    user: JSON.parse(localStorage.getItem("user")),
 
     };
   },

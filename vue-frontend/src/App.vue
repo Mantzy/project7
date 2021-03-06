@@ -19,10 +19,10 @@
                             <img src="img/cat.jpg" alt="Profile picture" class="rounded-circle">
                         </figure>
                         <section class="letter-light text-center font-weight-bold">
-                            <p>Jane Doe</p>
+                            <p>{{ user.name }}</p>
                         </section>
                         <section class="letter-light text-center">
-                            <p>jane.doe@email.ad</p>
+                            <p>{{ user.email }}</p>
                         </section>
                         </div>
                     </section>
@@ -83,6 +83,13 @@ import Navbar from '@/components/Navbar.vue'
   name: 'App',
   components: {
     Navbar
+  },
+
+
+  data() {
+return {
+     user: JSON.parse(localStorage.getItem("user")),
+}
   }
 }
 </script>
