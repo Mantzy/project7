@@ -1,7 +1,7 @@
 <template>
    <section class="col-lg-7">
 
-                        <div class="post bg-white p-2 m-3" v-for="post in posts" :key="post._id">
+                        <div class="post bg-white p-2 m-3 moveInUp-enter-active" v-for="post in posts" :key="post._id">
                             <div class="description m-2 text-center">
                                 <h3>{{ post.title }}</h3>
                             </div>
@@ -21,7 +21,7 @@
                                     <!-- <i class="fas fa-heart"></i>-->
                                 </div>
                                 <div class="col-6 mw-45 text-right">
-                                    <router-link to="/comment" class="link-unstyled"> <i class="far fa-comments"></i></router-link>
+                                    <router-link to="/comment/:_id" class="link-unstyled"> <i class="far fa-comments"></i></router-link>
 
                                 </div>
                             </div>
