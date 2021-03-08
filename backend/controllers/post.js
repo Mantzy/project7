@@ -9,7 +9,7 @@ exports.createPost = (req, res, next) => {
     const post = new Post({
         title: req.body.title,
         description: req.body.description,
-        //imageUrl: url + '/images/' + req.file.filename,
+        imageUrl: url + '/images/' + req.body.image.filename,
         likes: 0,
         usersLiked: [''],
         userId: req.body.userId,

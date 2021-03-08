@@ -13,7 +13,7 @@
                                 <p>{{ post.description }}</p>
                             </div>
                             <figure class="text-center">
-                                <img src="gif/giphy.gif" class=" mw-100">
+                                <img :src="post.imageUrl" class=" mw-100">
                             </figure>
                             <div class="like row m-2">
                                 <div class="col-6 mw-45">
@@ -21,7 +21,7 @@
                                     <!-- <i class="fas fa-heart"></i>-->
                                 </div>
                                 <div class="col-6 mw-45 text-right">
-                                    <router-link to="/comment/:_id" class="link-unstyled"> <i class="far fa-comments"></i></router-link>
+                                    <router-link :to="{path: '/comment/'+post._id }" class="link-unstyled"> <i class="far fa-comments"></i></router-link>
 
                                 </div>
                             </div>

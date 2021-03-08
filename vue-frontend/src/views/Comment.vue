@@ -3,11 +3,10 @@
 
                         <div class="post bg-white p-2   moveInUp-enter-active">
                             <div class="description m-2 text-center">
-                                <h3>Laughing sloth</h3>
+                                <h3>{{ post.title}}</h3>
                             </div>
                             <div class="name m-2 font-weight-bold text-right">
-                                by: Jane Doe
-
+                                by: {{ user.name }}
                             </div>
                             <div class="description m-2">
                                 <p>This is a funny post</p>
@@ -68,9 +67,65 @@
 </template>
 
 <script>
-export default {
+// @ is an alias to /src
+import axios from "axios";
 
+export default {
+  name: 'comment',
+  components: {
+
+  },
+
+data() {
+    return {
+      post: {
+        userId: localStorage.getItem("userId"),
+        user: JSON.parse(localStorage.getItem("user")),
+        title: "",
+        description: "",
+        imageUrl: "",
+
+      },
+
+    };
+  },
+
+
+beforeMount(){
+    this.isAuthenticated();
+    this.loadPosts();
+},
+
+
+  methods: {
+  isAuthenticated() {
+    if (localStorage.getItem("token") == null){
+        window.location.href="#/login"
+    }
+  },
+    loadPosts() {
+        axios.get(`http://localhost:3000/api/posts/${this.post._id}`, { headers: {
+        authorization: "Bearer " + localStorage.getItem("token")}})
+        .then((response) => {
+        this.post = response.data;
+        
+        console.log(this.posts)
+
+
+
+
+})
+
+
+    }
+
+    
 }
+
+  }
+
+
+
 </script>
 
 <style>

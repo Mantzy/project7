@@ -16,7 +16,7 @@
                                 <div class="form-group">
                                     <div class="form-group">
                                         <label for="postGif">Upload GIF</label>
-                                        <input type="file" class="form-control-file" id="postGif">
+                                        <input type="file" class="form-control-file" id="postGif" @change="setImage">
                                     </div>
                                 </div>
                                 <div class="text-right">
@@ -41,7 +41,7 @@ data() {
         user: JSON.parse(localStorage.getItem("user")),
         title: "",
         description: "",
-        imageUrl: "",
+        image: null,
       },
     };
   },
@@ -49,8 +49,8 @@ data() {
   methods: {
        addPost() {
 
-           //console.log(this.form);
-           axios.post("http://localhost:3000/api/posts", this.form, { headers: {
+           console.log(this.form);
+          axios.post("http://localhost:3000/api/posts", this.form, { headers: {
         authorization: "Bearer " + localStorage.getItem("token")}}).then((response) => {
      window.location.href="#/"
                  console.log(response)
@@ -59,7 +59,13 @@ data() {
 
 })
 
-      }
+      },
+
+      setImage(event) {
+        this.form.image=event.target.files[0];
+        console.log(this.form.image)
+        
+    }
   }
 
 
