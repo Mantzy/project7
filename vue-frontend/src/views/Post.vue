@@ -17,6 +17,7 @@
                                     <div class="form-group">
                                         <label for="postGif">Upload GIF</label>
                                         <input type="file" class="form-control-file" id="postGif" @change="setImage">
+                                        <input type="hidden" v-model="form.image">
                                     </div>
                                 </div>
                                 <div class="text-right">
@@ -48,9 +49,14 @@ data() {
 
   methods: {
        addPost() {
-
+const form = new FormData()
+      form.append('title', this.form.title)
+      form.append('description', this.form.description)
+      form.append('image', this.form.image)
+      form.append('userId', this.form.userId)
+      form.append('user', this.form.user)
            console.log(this.form);
-          axios.post("http://localhost:3000/api/posts", this.form, { headers: {
+          axios.post("http://localhost:3000/api/posts", form, { headers: {
         authorization: "Bearer " + localStorage.getItem("token")}}).then((response) => {
      window.location.href="#/"
                  console.log(response)
@@ -63,7 +69,7 @@ data() {
 
       setImage(event) {
         this.form.image=event.target.files[0];
-        console.log(this.form.image)
+
         
     }
   }

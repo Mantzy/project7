@@ -37,7 +37,7 @@ const routes = [{
         name: 'Login',
         component: Login
     }, {
-        path: '/comment',
+        path: '/comment/:id',
         name: 'Comment',
         component: Comment
     }

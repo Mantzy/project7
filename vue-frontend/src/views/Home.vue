@@ -16,16 +16,18 @@
                                 <img :src="post.imageUrl" class=" mw-100">
                             </figure>
                             <div class="like row m-2">
-                                <div class="col-6 mw-45">
-                                    <i class="far fa-heart"></i>
+                                <div class="col-6 mw-45" @click="likePost()">
+                                    <button type="submit" class="btn btn-color"><i class="far fa-heart"></i><p>{{ post.likes }}</p></button>
                                     <!-- <i class="fas fa-heart"></i>-->
                                 </div>
-                                <div class="col-6 mw-45 text-right">
+                               <div class="col-6 mw-45 text-right">
+                                 <!--<router-link :to="{ name: 'comment', params: { _id } }">-->
                                     <router-link :to="{path: '/comment/'+post._id }" class="link-unstyled"> <i class="far fa-comments"></i></router-link>
 
                                 </div>
                             </div>
                         </div>
+ 
                         
                         
 
@@ -75,6 +77,11 @@ beforeMount(){
 
 
 })
+
+
+    },
+
+    likePost() {
 
 
     }

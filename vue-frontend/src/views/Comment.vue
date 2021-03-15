@@ -3,16 +3,16 @@
 
                         <div class="post bg-white p-2   moveInUp-enter-active">
                             <div class="description m-2 text-center">
-                                <h3>{{ post.title}}</h3>
+                                <h3>{{ post.title }}</h3>
                             </div>
                             <div class="name m-2 font-weight-bold text-right">
-                                by: {{ user.name }}
+                                by: {{ post.user.name }}
                             </div>
                             <div class="description m-2">
-                                <p>This is a funny post</p>
+                                <p>{{ post.description }}</p>
                             </div>
                             <figure class="text-center">
-                                <img src="gif/giphy.gif" class=" mw-100">
+                                <img :src="post.imageUrl" class=" mw-100">
                             </figure>
                             <div class="like row m-2">
                                 <div class="col-6 mw-45">
@@ -76,50 +76,41 @@ export default {
 
   },
 
+
 data() {
     return {
-      post: {
-        userId: localStorage.getItem("userId"),
-        user: JSON.parse(localStorage.getItem("user")),
-        title: "",
-        description: "",
-        imageUrl: "",
-
-      },
+      post: {},
+    user: JSON.parse(localStorage.getItem("user")),
 
     };
   },
 
-
-beforeMount(){
+  beforeMount(){
     this.isAuthenticated();
-    this.loadPosts();
+    this.getOnePost(this.$route.params.id);
 },
 
 
-  methods: {
-  isAuthenticated() {
+methods: {
+
+isAuthenticated() {
     if (localStorage.getItem("token") == null){
         window.location.href="#/login"
     }
-  },
-    loadPosts() {
-        axios.get(`http://localhost:3000/api/posts/${this.post._id}`, { headers: {
-        authorization: "Bearer " + localStorage.getItem("token")}})
-        .then((response) => {
+},
+    getOnePost(_id) {
+axios.get("http://localhost:3000/api/posts/comment/"+_id, { headers: {
+        authorization: "Bearer " + localStorage.getItem("token")}}).then((response) => {
         this.post = response.data;
+        console.log(this.post)
         
-        console.log(this.posts)
+ 
 
 
 
 
 })
-
-
     }
-
-    
 }
 
   }
