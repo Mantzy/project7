@@ -16,8 +16,8 @@
                                 <img :src="post.imageUrl" class=" mw-100">
                             </figure>
                             <div class="like row m-2">
-                                <div class="col-6 mw-45" @click="likePost()">
-                                    <button type="submit" class="btn btn-color"><i class="far fa-heart"></i><p>{{ post.likes }}</p></button>
+                                <div class="col-6 mw-45">
+                                    <button type="submit" class="btn btn-color"  @click="likePost()"><i class="far fa-heart"></i><p>{{ post.likes }}</p></button>
                                     <!-- <i class="fas fa-heart"></i>-->
                                 </div>
                                <div class="col-6 mw-45 text-right">

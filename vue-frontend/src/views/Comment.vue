@@ -6,7 +6,7 @@
                                 <h3>{{ post.title }}</h3>
                             </div>
                             <div class="name m-2 font-weight-bold text-right">
-                                by: {{ post.user.name }}
+                               <!-- by: {{ post.user.name }}-->
                             </div>
                             <div class="description m-2">
                                 <p>{{ post.description }}</p>
@@ -17,6 +17,14 @@
                             <div class="like row m-2">
                                 <div class="col-6 mw-45">
                                     <i class="far fa-heart"></i>
+                                    <!-- <i class="fas fa-heart"></i>-->
+                                </div>
+                                <div class="col-3 mw-45">
+                                     <router-link :to="{path: '/modify/'+post._id }" class="link-unstyled"> Modify</router-link>
+                                    <!-- <i class="fas fa-heart"></i>-->
+                                </div>
+                                <div class="col-3 mw-45">
+                                     <button @click="deletePost(post._id)" type="submit" class="btn btn-color">Delete</button>
                                     <!-- <i class="fas fa-heart"></i>-->
                                 </div>
 
@@ -104,13 +112,18 @@ axios.get("http://localhost:3000/api/posts/comment/"+_id, { headers: {
         this.post = response.data;
         console.log(this.post)
         
- 
-
-
-
 
 })
-    }
+    },
+
+    deletePost(_id) {
+        console.log(_id);
+axios.delete("http://localhost:3000/api/posts/"+_id, { headers: {
+        authorization: "Bearer " + localStorage.getItem("token")}})
+    },
+
+
+    
 }
 
   }

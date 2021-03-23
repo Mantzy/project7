@@ -5,6 +5,7 @@ import Post from '../views/Post.vue'
 import Register from '../views/Register.vue'
 import Login from '../views/Login.vue'
 import Comment from '../views/Comment.vue'
+import Modify from '../views/Modify.vue'
 
 Vue.use(VueRouter)
 
@@ -40,6 +41,10 @@ const routes = [{
         path: '/comment/:id',
         name: 'Comment',
         component: Comment
+    }, {
+        path: '/modify/:id',
+        name: 'Modify',
+        component: Modify
     }
 ]
 

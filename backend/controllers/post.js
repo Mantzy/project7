@@ -90,7 +90,7 @@ exports.deletePost = (req, res, next) => {
     Post.findOne({ _id: req.params.id }).then(
         (post) => {
             const filename = post.imageUrl.split('/images/')[1];
-            fs.unlink('images/' + filename, () => {
+            if (post.imageUrl == null) {
                 Post.deleteOne({ _id: req.params.id }).then(
                     () => {
                         res.status(200).json({
@@ -104,7 +104,25 @@ exports.deletePost = (req, res, next) => {
                         });
                     }
                 );
-            });
+            } else {
+                fs.unlink('images/' + filename, () => {
+                    Post.deleteOne({ _id: req.params.id }).then(
+                        () => {
+                            res.status(200).json({
+                                message: 'Post deleted!'
+                            });
+                        }
+                    ).catch(
+                        (error) => {
+                            res.status(400).json({
+                                error: error
+                            });
+                        }
+                    );
+                });
+            }
+
+
         }
     );
 };
