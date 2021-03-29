@@ -119,7 +119,13 @@ axios.get("http://localhost:3000/api/posts/comment/"+_id, { headers: {
     deletePost(_id) {
         console.log(_id);
 axios.delete("http://localhost:3000/api/posts/"+_id, { headers: {
-        authorization: "Bearer " + localStorage.getItem("token")}})
+        authorization: "Bearer " + localStorage.getItem("token")}}).then((response) => {
+            this.post = response.data;
+        window.location.href="#/"
+
+        
+
+})
     },
 
 

@@ -78,6 +78,10 @@
 <script>
 // @ is an alias to /src
 import Navbar from '@/components/Navbar.vue'
+import Vue from "vue"
+import VueSimpleAlert from "vue-simple-alert";
+
+Vue.use(VueSimpleAlert);
 
  export default {
   name: 'App',
