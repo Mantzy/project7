@@ -127,7 +127,12 @@ axios.delete("http://localhost:3000/api/posts/"+_id, { headers: {
 
 })
     },
+    
+      setImage(event) {
+        this.form.image=event.target.files[0];
 
+        
+    }
 
     
 }

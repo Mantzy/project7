@@ -47,28 +47,23 @@ exports.getOnePost = (req, res, next) => {
 };
 
 exports.modifyPost = (req, res, next) => {
-    let post = new Post({ _id: req.params.id });
+    res.status(201).json({
+        message: req.file.filename
+    });
+    /*let post = new Post({ _id: req.params.id });
     if (req.file) {
         const url = req.protocol + '://' + req.get('host');
-        req.body.post = JSON.parse(req.body.post);
         post = {
-            name: req.body.post.name,
-            title: req.body.post.title,
-            description: req.body.post.description,
+            name: req.body.name,
+            title: req.body.title,
+            description: req.body.description,
             imageUrl: url + '/images/' + req.file.filename,
-            likes: 0,
-            usersLiked: [''],
-            userId: req.body.post.userId
         };
     } else {
         post = {
-            name: req.body.post.name,
-            title: req.body.post.title,
-            description: req.body.post.description,
-            likes: 0,
-            usersLiked: [''],
-
-            userId: req.body.post.userId
+            name: req.body.name,
+            title: req.body.title,
+            description: req.body.description,
         };
     }
     Post.updateOne({ _id: req.params.id }, post).then(
@@ -83,7 +78,7 @@ exports.modifyPost = (req, res, next) => {
                 error: error
             });
         }
-    );
+    );*/
 };
 
 exports.deletePost = (req, res, next) => {
