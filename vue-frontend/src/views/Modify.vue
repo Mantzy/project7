@@ -16,8 +16,8 @@
                                 <div class="form-group">
                                     <div class="form-group">
                                         <label for="postGif">Upload GIF</label>
-                                        <input type="file" class="form-control-file" id="file">
-                                        <input type="hidden" v-model="form.image">
+                                        <input type="file" class="form-control-file" id="postGif" @change="setImage">
+                                        <input type="hidden" v-model="form.imageFile">
                                     </div>
                                 </div>
                                 <div class="text-right">
@@ -44,7 +44,7 @@ data() {
         user: JSON.parse(localStorage.getItem("user")),
         title: "",
         description: "",
-        image: null,
+        imageFile: null,
       },
          
     };
@@ -73,7 +73,7 @@ axios.get("http://localhost:3000/api/posts/comment/"+_id, { headers: {
         this.post = response.data;
         this.form.title = this.post.title;
         this.form.description = this.post.description;
-        this.form.image = this.post.image;
+        this.form.imageFile = this.post.image;
         console.log(this.post)
         
 
@@ -84,15 +84,16 @@ axios.get("http://localhost:3000/api/posts/comment/"+_id, { headers: {
 const form = new FormData()
       form.append('title', this.form.title)
       form.append('description', this.form.description)
-      form.append('image', this.form.image)
+      form.append('image', this.form.imageFile)
 
-          axios.put("http://localhost:3000/api/posts/"+this.$route.params.id, this.form, { headers: {
+         axios.put("http://localhost:3000/api/posts/"+this.$route.params.id, form, { headers: {
         authorization: "Bearer " + localStorage.getItem("token")}})
-/*window.location.href="#/comment/"+this.$route.params.id;*/
+window.location.href="#/comment/"+this.$route.params.id;
+
       },
 
       setImage(event) {
-        this.form.image=event.target.files[0];
+        this.form.imageFile=event.target.files[0];
 
         
     }

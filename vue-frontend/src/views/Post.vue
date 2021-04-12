@@ -39,7 +39,7 @@ data() {
     return {
       form: {
         userId: localStorage.getItem("userId"),
-        user: JSON.parse(localStorage.getItem("user")),
+        user: localStorage.getItem("user"),
         title: "",
         description: "",
         image: null,

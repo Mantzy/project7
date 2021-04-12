@@ -20,7 +20,7 @@
                                     <!-- <i class="fas fa-heart"></i>-->
                                 </div>
                                 <div class="col-3 mw-45">
-                                     <router-link :to="{path: '/modify/'+post._id }" class="link-unstyled"> Modify</router-link>
+                                    <button type="submit" class="btn btn-color"> <router-link :to="{path: '/modify/'+post._id }" class="link-unstyled"> Modify</router-link></button>
                                     <!-- <i class="fas fa-heart"></i>-->
                                 </div>
                                 <div class="col-3 mw-45">
@@ -127,12 +127,7 @@ axios.delete("http://localhost:3000/api/posts/"+_id, { headers: {
 
 })
     },
-    
-      setImage(event) {
-        this.form.image=event.target.files[0];
 
-        
-    }
 
     
 }

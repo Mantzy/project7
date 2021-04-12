@@ -47,10 +47,10 @@ exports.getOnePost = (req, res, next) => {
 };
 
 exports.modifyPost = (req, res, next) => {
-    res.status(201).json({
-        message: req.file.filename
-    });
-    /*let post = new Post({ _id: req.params.id });
+    /* res.status(201).json({
+         message: req.file.filename
+     });*/
+    let post = new Post({ _id: req.params.id });
     if (req.file) {
         const url = req.protocol + '://' + req.get('host');
         post = {
@@ -78,7 +78,7 @@ exports.modifyPost = (req, res, next) => {
                 error: error
             });
         }
-    );*/
+    );
 };
 
 exports.deletePost = (req, res, next) => {

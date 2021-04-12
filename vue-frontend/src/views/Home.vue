@@ -6,7 +6,7 @@
                                 <h3>{{ post.title }}</h3>
                             </div>
                             <div class="name m-2 font-weight-bold text-right">
-                               by: {{ user.name }}
+                               by: {{ JSON.parse(post.user).name  }}
 
                             </div>
                             <div class="description m-2">
