@@ -12,7 +12,7 @@
                             <div class="description m-2">
                                 <p>{{ post.description }}</p>
                             </div>
-                            <figure class="text-center">
+                            <figure class="text-center mw-smaller">
                                 <img :src="post.imageUrl" class=" mw-100">
                             </figure>
                             <div class="like row m-2">

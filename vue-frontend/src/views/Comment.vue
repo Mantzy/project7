@@ -20,11 +20,11 @@
                                     <!-- <i class="fas fa-heart"></i>-->
                                 </div>
                                 <div class="col-3 mw-45">
-                                    <button type="submit" class="btn btn-color"> <router-link :to="{path: '/modify/'+post._id }" class="link-unstyled"> Modify</router-link></button>
+                                    <button type="submit" class="btn btn-color"> <router-link :to="{path: '/modify/'+post._id }" class="link-unstyled text-dark"> Modify</router-link></button>
                                     <!-- <i class="fas fa-heart"></i>-->
                                 </div>
                                 <div class="col-3 mw-45">
-                                     <button @click="deletePost(post._id)" type="submit" class="btn btn-color">Delete</button>
+                                     <button @click="deletePost(post._id)" type="submit" class="btn btn-color text-dark">Delete</button>
                                     <!-- <i class="fas fa-heart"></i>-->
                                 </div>
 
@@ -32,10 +32,10 @@
                             <!-- comment start-->
                             <!--post comment start-->
                             <div>
-                                <form>
+                                <form  @submit.prevent="createPost">
                                     <div class="form-group">
                                         <label for="commentText">Write your comment here:</label>
-                                        <textarea class="form-control" id="commentText" rows="3"></textarea>
+                                        <textarea class="form-control" id="commentText" rows="3" v-model="comment.comment"></textarea>
                                     </div>
                                     <div class="text-right">
                                         <button type="submit" class="btn btn-color">COMMENT</button>
@@ -89,7 +89,12 @@ data() {
     return {
       post: {},
     user: JSON.parse(localStorage.getItem("user")),
+      comment: {
+        userId: localStorage.getItem("userId"),
+        user: localStorage.getItem("user"),
+        comment: "",
 
+      },
     };
   },
 
@@ -128,7 +133,18 @@ axios.delete("http://localhost:3000/api/posts/"+_id, { headers: {
 })
     },
 
+createComment(_id) {
+   const comment = new Comment()
+      comment.append('comment', this.comment.comment)
+      comment.append('userId', this.comment.userId)
+      comment.append('user', this.comment.user)
+          axios.post("http://localhost:3000/posts/comments" +_id, comment, { headers: {
+        authorization: "Bearer " + localStorage.getItem("token")}}).then((response) => {
+     window.location.href="#/"
+                 console.log(response)
 
+})
+},
     
 }
 

@@ -133,5 +133,10 @@ return {
         0%{  transform: translateY(0); }  100%{  transform: translateY(-400px); }
         }
 
+.mw-smaller {
+    max-width: 800px;
+    margin: 0 auto !important;
+}
+
 
 </style>
