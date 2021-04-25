@@ -8,7 +8,8 @@ const postSchema = mongoose.Schema({
     description: { type: String, required: true },
     imageUrl: { type: String, required: false },
     likes: { type: Number, required: false },
-    usersLiked: { type: [String], required: false }
+    usersLiked: { type: [String], required: false },
+    userRead: { type: [String] }
 
 
 });

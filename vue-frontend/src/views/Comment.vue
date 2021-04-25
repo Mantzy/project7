@@ -32,7 +32,7 @@
                             <!-- comment start-->
                             <!--post comment start-->
                             <div>
-                                <form  @submit.prevent="createPost">
+                                <form  @submit.prevent="createComment(post._id)">
                                     <div class="form-group">
                                         <label for="commentText">Write your comment here:</label>
                                         <textarea class="form-control" id="commentText" rows="3" v-model="comment.comment"></textarea>
@@ -46,26 +46,16 @@
                             <!-- comment section start-->
                             <div class="comments m-2">
                                 <!-- single comment start-->
-                                <div class="comment1 m-3 commentStyle p-1">
+                                <div class="comment1 m-3 commentStyle p-1" v-for="comment in comments" :key="comment._id" >
                                     <div>
-                                        <p class="font-weight-bold">Jon Doe</p>
+                                        <p class="font-weight-bold"> {{ JSON.parse(comment.user).name }}</p>
                                     </div>
                                     <div>
-                                        <p> I really like it!</p>
+                                        <p>{{ comment.comment }}</p>
                                     </div>
                                 </div>
                                 <!-- single comment end-->
 
-                                <!-- single comment start-->
-                                <div class="comment1 m-3 commentStyle p-1">
-                                    <div>
-                                        <p class="font-weight-bold">Jessica Smith</p>
-                                    </div>
-                                    <div>
-                                        <p>Just like me today</p>
-                                    </div>
-                                </div>
-                                <!-- single comment end-->
                             </div>
                             <!-- comment section end-->
                             <!-- comment end-->
@@ -95,12 +85,14 @@ data() {
         comment: "",
 
       },
+      comments: [],
     };
   },
 
   beforeMount(){
     this.isAuthenticated();
     this.getOnePost(this.$route.params.id);
+    this.getAllComments(this.$route.params.id);
 },
 
 
@@ -133,15 +125,25 @@ axios.delete("http://localhost:3000/api/posts/"+_id, { headers: {
 })
     },
 
-createComment(_id) {
-   const comment = new Comment()
-      comment.append('comment', this.comment.comment)
-      comment.append('userId', this.comment.userId)
-      comment.append('user', this.comment.user)
-          axios.post("http://localhost:3000/posts/comments" +_id, comment, { headers: {
+createComment(postId) {
+    console.log(postId)
+   this.comment.postId = postId;
+    
+          axios.post("http://localhost:3000/api/comment/" +postId, this.comment, { headers: {
         authorization: "Bearer " + localStorage.getItem("token")}}).then((response) => {
-     window.location.href="#/"
+this.comment = "";
+this.getAllComments(postId);
                  console.log(response)
+
+})
+},
+
+getAllComments(postId) {
+axios.get("http://localhost:3000/api/comment/"+postId, { headers: {
+        authorization: "Bearer " + localStorage.getItem("token")}}).then((response) => {
+        this.comments = response.data;
+        console.log(this.comments)
+        
 
 })
 },
