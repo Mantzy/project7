@@ -15,10 +15,13 @@
                                 <img :src="post.imageUrl" class=" mw-100">
                             </figure>
                             <div class="like row m-2">
-                                <div class="col-6 mw-45">
-                                    <i class="far fa-heart"></i>
+                                <div class="col-3 mw-45">
+                                     <button type="submit" class="btn btn-color"  @click="likePost(post)"><i class="far fa-heart"></i><p>{{ post.likes }}</p></button>
                                     <!-- <i class="fas fa-heart"></i>-->
+                                    
                                 </div>
+
+                                <div class="col-3 mw-45 text-right brown-color"><h5><i class="far fa-eye "></i><p>{{ post.userRead.length }}</p></h5></div>
                                 <div class="col-3 mw-45">
                                     <button type="submit" class="btn btn-color"> <router-link :to="{path: '/modify/'+post._id }" class="link-unstyled text-dark"> Modify</router-link></button>
                                     <!-- <i class="fas fa-heart"></i>-->
@@ -92,7 +95,9 @@ data() {
   beforeMount(){
     this.isAuthenticated();
     this.getOnePost(this.$route.params.id);
+
     this.getAllComments(this.$route.params.id);
+   
 },
 
 
@@ -107,7 +112,7 @@ isAuthenticated() {
 axios.get("http://localhost:3000/api/posts/comment/"+_id, { headers: {
         authorization: "Bearer " + localStorage.getItem("token")}}).then((response) => {
         this.post = response.data;
-        console.log(this.post)
+         this.readPost(this.post);
         
 
 })
@@ -130,10 +135,10 @@ createComment(postId) {
    this.comment.postId = postId;
     
           axios.post("http://localhost:3000/api/comment/" +postId, this.comment, { headers: {
-        authorization: "Bearer " + localStorage.getItem("token")}}).then((response) => {
+        authorization: "Bearer " + localStorage.getItem("token")}}).then(() => {
 this.comment = "";
 this.getAllComments(postId);
-                 console.log(response)
+                 
 
 })
 },
@@ -142,11 +147,43 @@ getAllComments(postId) {
 axios.get("http://localhost:3000/api/comment/"+postId, { headers: {
         authorization: "Bearer " + localStorage.getItem("token")}}).then((response) => {
         this.comments = response.data;
-        console.log(this.comments)
+        
         
 
 })
 },
+
+
+    readPost(post) {
+        console.log(this.post)
+if(!post.userRead.includes(this.user._id)){
+  post.read = this.user._id;
+  axios.post("http://localhost:3000/api/posts/" + post._id + "/read", post, { headers: {
+        authorization: "Bearer " + localStorage.getItem("token")}}).then(() => {
+          this.loadPosts()
+                
+
+})
+} 
+ 
+
+    },
+
+    
+        likePost(post) {
+if(post.usersLiked.includes(this.user._id)){
+  post.like = 0;
+} else {
+  post.like = 1;
+}
+ axios.post("http://localhost:3000/api/posts/" + post._id + "/like", post, { headers: {
+        authorization: "Bearer " + localStorage.getItem("token")}}).then((response) => {
+          this.getOnePost()
+                 console.log(response)
+
+})
+
+    }
     
 }
 

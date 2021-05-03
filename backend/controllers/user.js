@@ -9,6 +9,7 @@ exports.signup = (req, res, next) => {
                 name: req.body.name,
                 email: req.body.email,
                 password: hash
+                    // profile: url + '/profile/' + req.file.filename,
             });
             user.save().then(
                 () => {

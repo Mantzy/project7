@@ -150,15 +150,9 @@ exports.likePost = (req, res, next) => {
                     if (post.usersLiked.includes(req.body.userId)) {
                         post.likes -= 1
                         post.usersLiked.remove(req.body.userId)
-                    } else {
-                        post.dislikes -= 1
-                        post.usersDisliked.remove(req.body.userId)
                     }
                     break;
-                case -1:
-                    post.dislikes += 1
-                    post.usersDisliked.push(req.body.userId)
-                    break;
+
             }
 
             Post.updateOne({ _id: req.params.id }, post).then(
@@ -166,6 +160,38 @@ exports.likePost = (req, res, next) => {
                 () => {
                     res.status(201).json({
                         message: 'Post like updated!'
+                    });
+                }
+            ).catch(
+                (error) => {
+                    res.status(400).json({
+                        error: error
+                    });
+                }
+            );
+        }
+
+    )
+
+};
+
+exports.userRead = (req, res, next) => {
+    Post.findOne({ _id: req.params.id }).then(
+        (post) => {
+
+            if (!post.userRead.includes(req.body.read)) {
+                post.userRead.push(req.body.read)
+
+            }
+
+
+
+
+            Post.updateOne({ _id: req.params.id }, post).then(
+
+                () => {
+                    res.status(201).json({
+                        message: 'Post has been read!'
                     });
                 }
             ).catch(

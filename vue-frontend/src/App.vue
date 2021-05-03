@@ -24,6 +24,10 @@
                         <section class="letter-light text-center">
                             <p>{{ user.email }}</p>
                         </section>
+                        <section class="letter-light text-center">
+                            <router-link to="/userupdate" class="nav-link letter-light"> Modify details
+                    </router-link>
+                        </section>
                         </div>
                     </section>
                     <!-- Left content end-->
@@ -136,6 +140,10 @@ return {
 .mw-smaller {
     max-width: 800px;
     margin: 0 auto !important;
+}
+
+.brown-color {
+    color: #F2DB94 !important;
 }
 
 

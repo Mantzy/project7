@@ -17,11 +17,13 @@
                             </figure>
                             <div class="like row m-2">
                                 <div class="col-6 mw-45">
-                                    <button type="submit" class="btn btn-color"  @click="likePost()"><i class="far fa-heart"></i><p>{{ post.likes }}</p></button>
+                                    <button type="submit" class="btn btn-color"  @click="likePost(post)"><i class="far fa-heart"></i><p>{{ post.likes }}</p></button>
                                     <!-- <i class="fas fa-heart"></i>-->
                                 </div>
-                               <div class="col-6 mw-45 text-right">
+                                <div class="col-4 mw-45 text-right brown-color"><h5><i class="far fa-eye "></i><p>{{ post.userRead.length }}</p></h5></div>
+                               <div class="col-2 mw-45 text-right">
                                  <!--<router-link :to="{ name: 'comment', params: { _id } }">-->
+                                  
                                     <router-link :to="{path: '/comment/'+post._id }" class="link-unstyled"> <i class="far fa-comments"></i></router-link>
 
                                 </div>
@@ -81,8 +83,18 @@ beforeMount(){
 
     },
 
-    likePost() {
+    likePost(post) {
+if(post.usersLiked.includes(this.user._id)){
+  post.like = 0;
+} else {
+  post.like = 1;
+}
+ axios.post("http://localhost:3000/api/posts/" + post._id + "/like", post, { headers: {
+        authorization: "Bearer " + localStorage.getItem("token")}}).then((response) => {
+          this.loadPosts()
+                 console.log(response)
 
+})
 
     }
 }

@@ -45,6 +45,11 @@ const routes = [{
         path: '/modify/:id',
         name: 'Modify',
         component: Modify
+    },
+    {
+        path: '/userupdate/:id',
+        name: 'Userupdate',
+        component: Modify
     }
 ]
 

@@ -18,11 +18,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="profilePicture">Choose a profile picture</label>
-                                    <input type="file" class="form-control-file" id="profilePicture">
+                                  <!--  <input type="file" class="form-control-file" id="profilePicture"  @change="setImage">-->
+                                        <input type="hidden" v-model="form.profile">
                                 </div>
 
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-color" @click="register()">Register</button>
+                                   <button type="submit" class="btn btn-color" @click="register()">Register</button>
                                 </div>
                                                                                                 <div class="text-right">
                                     <p>Already a member? <router-link to="/login">Log in here</router-link></p>
@@ -60,7 +61,12 @@ data() {
 })
 
       }
-  }
+  },
+     /*   setImage(event) {
+        this.form.profile=event.target.files[0];
+
+        
+    }*/
 
 
 }
