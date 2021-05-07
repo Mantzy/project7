@@ -23,11 +23,11 @@
 
                                 <div class="col-3 mw-45 text-right brown-color"><h5><i class="far fa-eye "></i><p>{{ post.userRead.length }}</p></h5></div>
                                 <div class="col-3 mw-45">
-                                    <button type="submit" class="btn btn-color"> <router-link :to="{path: '/modify/'+post._id }" class="link-unstyled text-dark"> Modify</router-link></button>
+                                    <button type="submit" class="btn btn-color"> <router-link :to="{path: '/modify/'+post._id }" class="link-unstyled text-dark" v-if="user._id == post.userId"> Modify</router-link></button>
                                     <!-- <i class="fas fa-heart"></i>-->
                                 </div>
                                 <div class="col-3 mw-45">
-                                     <button @click="deletePost(post._id)" type="submit" class="btn btn-color text-dark">Delete</button>
+                                     <button @click="deletePost(post._id)" type="submit" class="btn btn-color text-dark" v-if="user._id == post.userId">Delete</button>
                                     <!-- <i class="fas fa-heart"></i>-->
                                 </div>
 

@@ -25,8 +25,9 @@
                             <p>{{ user.email }}</p>
                         </section>
                         <section class="letter-light text-center">
-                            <router-link to="/userupdate" class="nav-link letter-light"> Modify details
-                    </router-link>
+                          <!--  <router-link to="/userupdate" class="nav-link letter-light"> Modify details
+                    </router-link>-->
+                    <button @click="deleteAccount()">DELETE ACCOUNT</button>
                         </section>
                         </div>
                     </section>
@@ -84,6 +85,7 @@
 import Navbar from '@/components/Navbar.vue'
 import Vue from "vue"
 import VueSimpleAlert from "vue-simple-alert";
+import axios from "axios";
 
 Vue.use(VueSimpleAlert);
 
@@ -96,9 +98,30 @@ Vue.use(VueSimpleAlert);
 
   data() {
 return {
-     user: JSON.parse(localStorage.getItem("user")),
+     user: []
 }
+  },
+
+beforeMount(){
+this.user = JSON.parse(localStorage.getItem("user"))
+}, 
+
+methods: {
+
+      deleteAccount() {
+      if (confirm("Are you sure you want to delete your account?")) {
+axios.delete("http://localhost:3000/api/auth/"+this.user._id, { headers: {
+        authorization: "Bearer " + localStorage.getItem("token")}}).then(() => {
+        localStorage.clear()
+        window.location.href="#/login"
+
+        
+
+})
+      }
   }
+}
+
 }
 </script>
 

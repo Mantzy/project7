@@ -141,7 +141,7 @@ exports.getAllPosts = (req, res, next) => {
 exports.likePost = (req, res, next) => {
     Post.findOne({ _id: req.params.id }).then(
         (post) => {
-            switch (req.body.like) {
+            switch (req.body.post.like) {
                 case 1:
                     post.likes += 1
                     post.usersLiked.push(req.body.userId)

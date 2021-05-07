@@ -86,10 +86,19 @@ beforeMount(){
     likePost(post) {
 if(post.usersLiked.includes(this.user._id)){
   post.like = 0;
+  console.log("dislike")
 } else {
   post.like = 1;
+  console.log("liked")
 }
- axios.post("http://localhost:3000/api/posts/" + post._id + "/like", post, { headers: {
+
+let data = {
+  post: post,
+  userId: this.user._id
+}
+
+
+ axios.post("http://localhost:3000/api/posts/" + post._id + "/like", data, { headers: {
         authorization: "Bearer " + localStorage.getItem("token")}}).then((response) => {
           this.loadPosts()
                  console.log(response)
