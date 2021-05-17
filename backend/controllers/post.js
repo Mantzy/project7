@@ -11,9 +11,10 @@ exports.createPost = (req, res, next) => {
         description: req.body.description,
         imageUrl: url + '/images/' + req.file.filename,
         likes: 0,
-        usersLiked: [''],
+        usersLiked: [],
         userId: req.body.userId,
-        user: req.body.user
+        user: req.body.user,
+        userRead: []
     });
     post.save().then(
         () => {
@@ -179,10 +180,10 @@ exports.userRead = (req, res, next) => {
     Post.findOne({ _id: req.params.id }).then(
         (post) => {
 
-            if (!post.userRead.includes(req.body.read)) {
-                post.userRead.push(req.body.read)
+            //if (!post.userRead.includes(req.body.read)) {
+            post.userRead.push(req.body.post.read)
 
-            }
+            //}
 
 
 

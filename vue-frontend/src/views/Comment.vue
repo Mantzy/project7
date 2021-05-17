@@ -16,14 +16,15 @@
                             </figure>
                             <div class="like row m-2">
                                 <div class="col-3 mw-45">
-                                     <button type="submit" class="btn btn-color"  @click="likePost(post)"><i class="far fa-heart"></i><p>{{ post.likes }}</p></button>
-                                    <!-- <i class="fas fa-heart"></i>-->
+                                     
+                                     <h5><i class="far fa-heart "></i><p>{{ post.likes }}</p></h5>
+                                    <!-- <i class="fas fa-heart"></i><button type="submit" class="btn btn-color rounded"  @click="likePost(post)"><i class="far fa-heart"></i><p>{{ post.likes }}</p></button>-->
                                     
                                 </div>
 
                                 <div class="col-3 mw-45 text-right brown-color"><h5><i class="far fa-eye "></i><p>{{ post.userRead.length }}</p></h5></div>
                                 <div class="col-3 mw-45">
-                                    <button type="submit" class="btn btn-color"> <router-link :to="{path: '/modify/'+post._id }" class="link-unstyled text-dark" v-if="user._id == post.userId"> Modify</router-link></button>
+                                    <button type="submit" class="btn btn-color" v-if="user._id == post.userId"> <router-link :to="{path: '/modify/'+post._id }" class="link-unstyled text-dark" v-if="user._id == post.userId"> Modify</router-link></button>
                                     <!-- <i class="fas fa-heart"></i>-->
                                 </div>
                                 <div class="col-3 mw-45">
@@ -155,35 +156,48 @@ axios.get("http://localhost:3000/api/comment/"+postId, { headers: {
 
 
     readPost(post) {
-        console.log(this.post)
+        /*console.log(this.post)*/
 if(!post.userRead.includes(this.user._id)){
   post.read = this.user._id;
-  axios.post("http://localhost:3000/api/posts/" + post._id + "/read", post, { headers: {
-        authorization: "Bearer " + localStorage.getItem("token")}}).then(() => {
+  let data = {
+      post: post,
+      userId: this.user._id
+  }
+  axios.post("http://localhost:3000/api/posts/" + post._id + "/read", data, { headers: {
+        authorization: "Bearer " + localStorage.getItem("token")}}).then((response) => {
           this.loadPosts()
-                
-
+          console.log(response.message)
 })
+   console.log(post.read)     
 } 
  
 
     },
 
     
-        likePost(post) {
+   /* likePost(post) {
 if(post.usersLiked.includes(this.user._id)){
   post.like = 0;
+  console.log("dislike")
 } else {
   post.like = 1;
+  console.log("liked")
 }
- axios.post("http://localhost:3000/api/posts/" + post._id + "/like", post, { headers: {
+
+let data = {
+  post: post,
+  userId: this.user._id
+}
+
+
+ axios.post("http://localhost:3000/api/posts/" + post._id + "/like", data, { headers: {
         authorization: "Bearer " + localStorage.getItem("token")}}).then((response) => {
-          this.getOnePost()
+          
                  console.log(response)
 
 })
 
-    }
+    }*/
     
 }
 

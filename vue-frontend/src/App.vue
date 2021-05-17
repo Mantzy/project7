@@ -169,5 +169,8 @@ axios.delete("http://localhost:3000/api/auth/"+this.user._id, { headers: {
     color: #F2DB94 !important;
 }
 
+.rounded {
+    border-radius: 50% !important;
+}
 
 </style>

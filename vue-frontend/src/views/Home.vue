@@ -17,7 +17,7 @@
                             </figure>
                             <div class="like row m-2">
                                 <div class="col-6 mw-45">
-                                    <button type="submit" class="btn btn-color"  @click="likePost(post)"><i class="far fa-heart"></i><p>{{ post.likes }}</p></button>
+                                    <button type="submit" class="btn btn-color rounded"  @click="likePost(post)"><i class="far fa-heart"></i><p>{{ post.likes }}</p></button>
                                     <!-- <i class="fas fa-heart"></i>-->
                                 </div>
                                 <div class="col-4 mw-45 text-right brown-color"><h5><i class="far fa-eye "></i><p>{{ post.userRead.length }}</p></h5></div>
@@ -57,17 +57,16 @@ data() {
 
 
 beforeMount(){
-    this.isAuthenticated();
     this.loadPosts();
 },
 
 
   methods: {
-  isAuthenticated() {
+ /* isAuthenticated() {
     if (localStorage.getItem("token") == null){
         window.location.href="#/login"
     }
-  },
+  },*/
     loadPosts() {
         axios.get("http://localhost:3000/api/posts/", { headers: {
         authorization: "Bearer " + localStorage.getItem("token")}}).then((response) => {
