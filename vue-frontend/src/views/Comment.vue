@@ -15,14 +15,14 @@
                                 <img :src="post.imageUrl" class=" mw-100">
                             </figure>
                             <div class="like row m-2">
-                                <div class="col-3 mw-45">
+                                <div class="col-3 mw-45 text-center">
                                      
                                      <h5><i class="far fa-heart "></i><p>{{ post.likes }}</p></h5>
                                     <!-- <i class="fas fa-heart"></i><button type="submit" class="btn btn-color rounded"  @click="likePost(post)"><i class="far fa-heart"></i><p>{{ post.likes }}</p></button>-->
                                     
                                 </div>
 
-                                <div class="col-3 mw-45 text-right brown-color"><h5><i class="far fa-eye "></i><p>{{ post.userRead.length }}</p></h5></div>
+                                <div class="col-3 mw-45 text-center brown-color"><h5><i class="far fa-eye "></i><p>{{ post.userRead.length }}</p></h5></div>
                                 <div class="col-3 mw-45">
                                     <button type="submit" class="btn btn-color" v-if="user._id == post.userId"> <router-link :to="{path: '/modify/'+post._id }" class="link-unstyled text-dark" v-if="user._id == post.userId"> Modify</router-link></button>
                                     <!-- <i class="fas fa-heart"></i>-->
