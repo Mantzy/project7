@@ -6,7 +6,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const mongoose = require('mongoose');
+const db = require('./config/db.config');
+/*const mongoose = require('mongoose');*/
 
 
 const postRoutes = require('./routes/post');
@@ -18,14 +19,14 @@ const commentRoutes = require('./routes/comment');
 const path = require('path');
 
 
-mongoose.connect('mongodb+srv://mantzy:TnYMiUO2GqJZt1cc@cluster0.17iyd.mongodb.net/<dbname>?retryWrites=true&w=majority')
-    .then(() => {
-        console.log('Successfully connected to MongoDB Atlas!');
-    })
-    .catch((error) => {
-        console.log('Unable to connect to MongoDB Atlas!');
-        console.error(error);
-    });
+// mongoose.connect('mongodb+srv://mantzy:TnYMiUO2GqJZt1cc@cluster0.17iyd.mongodb.net/<dbname>?retryWrites=true&w=majority')
+//     .then(() => {
+//         console.log('Successfully connected to MongoDB Atlas!');
+//     })
+//     .catch((error) => {
+//         console.log('Unable to connect to MongoDB Atlas!');
+//         console.error(error);
+//     });
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -35,6 +36,10 @@ app.use((req, res, next) => {
 });
 
 app.use(bodyParser.json());
+
+
+db.authenticate().then(() => console.log("Data  Base Connected !")).catch((err) => console.log(err));
+
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
 

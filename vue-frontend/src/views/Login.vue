@@ -3,7 +3,7 @@
 
                         <div class="post bg-white p-2  moveInUp-enter-active">
                             <h3 class="text-center">Please Log In</h3>
-                            <form>
+                            <form @submit.prevent="login">
                                 <div class="form-group">
                                     <label for="Email1">Email address</label>
                                     <input type="email" class="form-control" id="Email1" aria-describedby="emailHelp" placeholder="Enter email" v-model="form.email">
@@ -15,7 +15,7 @@
                                 </div>
 
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-color" @click="login()">LOGIN</button>
+                                    <button type="submit" class="btn btn-color" >LOGIN</button>
                                 </div>
                                                                 <div class="text-right">
                                     <p>Don't have an account yet? <router-link to="/register">Sign up here</router-link></p>
@@ -53,7 +53,7 @@ beforeMount(){
             localStorage.setItem("user", JSON.stringify(response.data.user))
 
 
-        window.location.href="#/"
+        window.location.href="http://localhost:8080/"
                  console.log(response)
 
 

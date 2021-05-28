@@ -30,7 +30,7 @@ exports.signup = (req, res, next) => {
 
 
 exports.login = (req, res, next) => {
-    User.findOne({ email: req.body.email }).then(
+    User.findOne({ where: { email: req.body.email } }).then(
         (user) => {
             if (!user) {
                 return res.status(401).json({
@@ -44,10 +44,10 @@ exports.login = (req, res, next) => {
                             error: new Error('Incorrect password!')
                         });
                     }
-                    const token = jwt.sign({ userId: user._id },
+                    const token = jwt.sign({ userId: user.id },
                         'RANDOM_TOKEN_SECRET', { expiresIn: '24h' });
                     res.status(200).json({
-                        userId: user._id,
+                        userId: user.id,
                         user: user,
                         token: token
                     });
@@ -70,11 +70,11 @@ exports.login = (req, res, next) => {
 };
 
 exports.deleteUser = (req, res, next) => {
-    User.findOne({ _id: req.params.id }).then(
+    User.findOne({ where: { id: req.params.id } }).then(
         (user) => {
 
 
-            User.deleteOne({ _id: req.params.id }).then(
+            user.destroy().then(
                 () => {
                     res.status(200).json({
                         message: 'User deleted!'

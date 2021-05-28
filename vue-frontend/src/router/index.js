@@ -59,11 +59,11 @@ const router = new VueRouter({
 
 const userId = localStorage.getItem("userId")
 let isAuthenticated = false;
-if (userId != null) {
+if (userId != null && userId != undefined) {
     isAuthenticated = true;
 }
 router.beforeEach((to, from, next) => {
-    if (to.name !== 'Login' && !isAuthenticated) next({ name: 'Login' })
+    if (to.name !== 'Login' && !isAuthenticated && to.name !== "Register") next({ name: 'Login' })
     else next()
 })
 export default router
