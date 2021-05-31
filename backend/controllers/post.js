@@ -11,10 +11,10 @@ exports.createPost = (req, res, next) => {
         description: req.body.description,
         imageUrl: url + '/images/' + req.file.filename,
         likes: 0,
-        usersLiked: [],
+        usersLiked: "[]",
         userId: req.body.userId,
         user: req.body.user,
-        userRead: []
+        userRead: "[]"
     });
     post.save().then(
         () => {
@@ -33,7 +33,7 @@ exports.createPost = (req, res, next) => {
 
 exports.getOnePost = (req, res, next) => {
     Post.findOne({
-        _id: req.params.id
+        where: { id: req.body.id }
     }).then(
         (post) => {
             res.status(200).json(post);
@@ -51,7 +51,9 @@ exports.modifyPost = (req, res, next) => {
     /* res.status(201).json({
          message: req.file.filename
      });*/
-    let post = new Post({ _id: req.params.id });
+    let post = Post.findOne({
+        where: { id: req.body.id }
+    });
     if (req.file) {
         const url = req.protocol + '://' + req.get('host');
         post = {
@@ -67,7 +69,7 @@ exports.modifyPost = (req, res, next) => {
             description: req.body.description,
         };
     }
-    Post.updateOne({ _id: req.params.id }, post).then(
+    Post.update(post, { where: { id: req.params.id } }).then(
         () => {
             res.status(201).json({
                 message: 'Post updated successfully!'
@@ -83,11 +85,13 @@ exports.modifyPost = (req, res, next) => {
 };
 
 exports.deletePost = (req, res, next) => {
-    Post.findOne({ _id: req.params.id }).then(
+    Post.findOne({
+        where: { id: req.body.id }
+    }).then(
         (post) => {
 
             if (post.imageUrl == undefined) {
-                Post.deleteOne({ _id: req.params.id }).then(
+                Post.destroy().then(
                     () => {
                         res.status(200).json({
                             message: 'Post deleted!'
@@ -103,7 +107,7 @@ exports.deletePost = (req, res, next) => {
             } else {
                 const filename = post.imageUrl.split('/images/')[1];
                 fs.unlink('images/' + filename, () => {
-                    Post.deleteOne({ _id: req.params.id }).then(
+                    Post.destroy().then(
                         () => {
                             res.status(200).json({
                                 message: 'Post deleted!'
@@ -125,7 +129,11 @@ exports.deletePost = (req, res, next) => {
 };
 
 exports.getAllPosts = (req, res, next) => {
-    Post.find().sort({ _id: -1 })
+    Post.findAll({
+            order: [
+                ["createdAt", "DESC"]
+            ]
+        })
         .then(
             (posts) => {
                 res.status(200).json(posts);
@@ -140,8 +148,11 @@ exports.getAllPosts = (req, res, next) => {
 };
 
 exports.likePost = (req, res, next) => {
-    Post.findOne({ _id: req.params.id }).then(
+    Post.findOne({
+        where: { id: req.body.id }
+    }).then(
         (post) => {
+            post.usersLiked = JSON.parse(post.usersLiked)
             switch (req.body.post.like) {
                 case 1:
                     post.likes += 1
@@ -155,8 +166,8 @@ exports.likePost = (req, res, next) => {
                     break;
 
             }
-
-            Post.updateOne({ _id: req.params.id }, post).then(
+            post.usersLiked = JSON.stringify(post.usersLiked)
+            post.save().then(
 
                 () => {
                     res.status(201).json({
@@ -177,18 +188,20 @@ exports.likePost = (req, res, next) => {
 };
 
 exports.userRead = (req, res, next) => {
-    Post.findOne({ _id: req.params.id }).then(
+    Post.findOne({
+        where: { id: req.body.id }
+    }).then(
         (post) => {
-
-            //if (!post.userRead.includes(req.body.read)) {
+            post.userRead = JSON.parse(post.userRead)
+                //if (!post.userRead.includes(req.body.read)) {
             post.userRead.push(req.body.post.read)
 
             //}
 
 
 
-
-            Post.updateOne({ _id: req.params.id }, post).then(
+            post.userRead = JSON.stringify(post.userRead)
+            post.save().then(
 
                 () => {
                     res.status(201).json({

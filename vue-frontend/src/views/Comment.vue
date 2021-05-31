@@ -22,13 +22,13 @@
                                     
                                 </div>
 
-                                <div class="col-3 mw-45 text-center brown-color"><h5><i class="far fa-eye "></i><p>{{ post.userRead.length }}</p></h5></div>
+                                <div class="col-3 mw-45 text-center brown-color"><h5><i class="far fa-eye "></i><p>{{ JSON.parse(post.userRead).length }}</p></h5></div>
                                 <div class="col-3 mw-45">
-                                    <button type="submit" class="btn btn-color" v-if="user._id == post.userId"> <router-link :to="{path: '/modify/'+post._id }" class="link-unstyled text-dark" v-if="user._id == post.userId"> Modify</router-link></button>
+                                    <button type="submit" class="btn btn-color" v-if="user.id == post.userId"> <router-link :to="{path: '/modify/'+post.id }" class="link-unstyled text-dark" v-if="user.id == post.userId"> Modify</router-link></button>
                                     <!-- <i class="fas fa-heart"></i>-->
                                 </div>
                                 <div class="col-3 mw-45">
-                                     <button @click="deletePost(post._id)" type="submit" class="btn btn-color text-dark" v-if="user._id == post.userId">Delete</button>
+                                     <button @click="deletePost(post._id)" type="submit" class="btn btn-color text-dark" v-if="user.id == post.userId">Delete</button>
                                     <!-- <i class="fas fa-heart"></i>-->
                                 </div>
 
@@ -156,12 +156,13 @@ axios.get("http://localhost:3000/api/comment/"+postId, { headers: {
 
 
     readPost(post) {
+        post.userRead = JSON.parse(post.userRead)
         /*console.log(this.post)*/
-if(!post.userRead.includes(this.user._id)){
-  post.read = this.user._id;
+if(!post.userRead.includes(this.user.id)){
+  post.read = this.user.id;
   let data = {
       post: post,
-      userId: this.user._id
+      userId: this.user.id
   }
   axios.post("http://localhost:3000/api/posts/" + post._id + "/read", data, { headers: {
         authorization: "Bearer " + localStorage.getItem("token")}}).then((response) => {

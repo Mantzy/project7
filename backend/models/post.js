@@ -1,17 +1,23 @@
-const mongoose = require('mongoose');
+//const mongoose = require('mongoose');
+const db = require('../config/db.config');
+//const uniqueValidator = require('mongoose-unique-validator');
+const DataTypes = require("sequelize");
 
-const postSchema = mongoose.Schema({
-    //_id: { type: String, required: true },
-    userId: { type: String, required: true },
-    user: { type: [Object], blackbox: true, required: true },
-    title: { type: String, required: true },
-    description: { type: String, required: true },
-    imageUrl: { type: String, required: false },
-    likes: { type: Number, required: false },
-    usersLiked: { type: [String], required: false },
-    userRead: { type: [String] }
 
+const Post = db.define("posts", {
+    //userId: { type: String, required: true, unique: true },
+
+    userId: { type: DataTypes.STRING },
+    user: { type: DataTypes.STRING },
+    title: { type: DataTypes.STRING },
+    description: { type: DataTypes.STRING },
+    imageUrl: { type: DataTypes.STRING },
+    likes: { type: DataTypes.INTEGER },
+    usersLiked: { type: DataTypes.STRING },
+    userRead: { type: DataTypes.STRING }
 
 });
 
-module.exports = mongoose.model('Post', postSchema);
+//userSchema.plugin(uniqueValidator);
+
+module.exports = Post
