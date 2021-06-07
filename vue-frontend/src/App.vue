@@ -15,13 +15,16 @@
                     <!-- Left content start-->
                     <section class="col-lg-3 side-bg p-2 " >
                         <div  v-if="$route.name !='Login' && $route.name !='Register'">
-                        <figure class=" text-center" >
+                        <!--<figure class=" text-center" >
                             <img src="img/cat.jpg" alt="Profile picture" class="rounded-circle">
-                        </figure>
-                        <section class="letter-light text-center font-weight-bold">
-                            <p>{{ user.name }}</p>
+                        </figure>-->
+                        <section class="text-center brown-color">
+                            <h3>Welcome</h3>
                         </section>
-                        <section class="letter-light text-center">
+                        <section class="letter-light text-center font-weight-bold">
+                            <h3>{{ user.name }}</h3>
+                        </section>
+                        <section class="letter-light text-center font-italic">
                             <p>{{ user.email }}</p>
                         </section>
                         <section class="letter-light text-center">
