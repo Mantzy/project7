@@ -97,7 +97,7 @@ let data = {
   userId: this.user.id
 }
 
-
+console.log(post.like)
  axios.post("http://localhost:3000/api/posts/" + post.id + "/like", data, { headers: {
         authorization: "Bearer " + localStorage.getItem("token")}}).then((response) => {
           this.loadPosts()

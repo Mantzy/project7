@@ -149,7 +149,7 @@ exports.getAllPosts = (req, res, next) => {
 
 exports.likePost = (req, res, next) => {
     Post.findOne({
-        where: { id: req.body.id }
+        where: { id: req.body.post.id }
     }).then(
         (post) => {
             post.usersLiked = JSON.parse(post.usersLiked)
@@ -160,8 +160,11 @@ exports.likePost = (req, res, next) => {
                     break;
                 case 0:
                     if (post.usersLiked.includes(req.body.userId)) {
+                        let index = post.usersLiked.findIndex(x => x == req.body.userId.toString());
+                        post.usersLiked.splice(index, 1);
+
                         post.likes -= 1
-                        post.usersLiked.remove(req.body.userId)
+                            // post.usersLiked.remove(req.body.userId)
                     }
                     break;
 

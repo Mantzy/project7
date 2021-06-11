@@ -22,7 +22,7 @@
                                     
                                 </div>
 
-                                <div class="col-3 mw-45 text-center brown-color"><h5><i class="far fa-eye "></i><p>{{ JSON.parse(post.userRead).length }}</p></h5></div>
+                                <div class="col-3 mw-45 text-center brown-color"><h5><i class="far fa-eye "></i><p>{{ JSON.parse(JSON.stringify(post.userRead)).length }}</p></h5></div>
                                 <div class="col-3 mw-45">
                                     <button type="submit" class="btn btn-color" v-if="user.id == post.userId"> <router-link :to="{path: '/modify/'+post.id }" class="link-unstyled text-dark" v-if="user.id == post.userId"> Modify</router-link></button>
                                     <!-- <i class="fas fa-heart"></i>-->
