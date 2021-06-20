@@ -113,7 +113,7 @@ methods: {
 
       deleteAccount() {
       if (confirm("Are you sure you want to delete your account?")) {
-axios.delete("http://localhost:3000/api/auth/"+this.user._id, { headers: {
+axios.delete("http://localhost:3000/api/auth/"+this.user.id, { headers: {
         authorization: "Bearer " + localStorage.getItem("token")}}).then(() => {
         localStorage.clear()
         window.location.href="#/login"

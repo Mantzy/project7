@@ -22,13 +22,13 @@
                                     
                                 </div>
 
-                                <div class="col-3 mw-45 text-center brown-color"><h5><i class="far fa-eye "></i><p>{{ JSON.parse(JSON.stringify(post.userRead)).length }}</p></h5></div>
+                                <div class="col-3 mw-45 text-center brown-color"><h5><i class="far fa-eye "></i> <p>{{ JSON.parse(JSON.stringify(post.userRead)).length }}</p></h5></div>
                                 <div class="col-3 mw-45">
                                     <button type="submit" class="btn btn-color" v-if="user.id == post.userId"> <router-link :to="{path: '/modify/'+post.id }" class="link-unstyled text-dark" v-if="user.id == post.userId"> Modify</router-link></button>
                                     <!-- <i class="fas fa-heart"></i>-->
                                 </div>
                                 <div class="col-3 mw-45">
-                                     <button @click="deletePost(post._id)" type="submit" class="btn btn-color text-dark" v-if="user.id == post.userId">Delete</button>
+                                     <button @click="deletePost(post.id)" type="submit" class="btn btn-color text-dark" v-if="user.id == post.userId">Delete</button>
                                     <!-- <i class="fas fa-heart"></i>-->
                                 </div>
 
@@ -36,7 +36,7 @@
                             <!-- comment start-->
                             <!--post comment start-->
                             <div>
-                                <form  @submit.prevent="createComment(post._id)">
+                                <form  @submit.prevent="createComment(post.id)">
                                     <div class="form-group">
                                         <label for="commentText">Write your comment here:</label>
                                         <textarea class="form-control" id="commentText" rows="3" v-model="comment.comment"></textarea>
@@ -50,7 +50,7 @@
                             <!-- comment section start-->
                             <div class="comments m-2">
                                 <!-- single comment start-->
-                                <div class="comment1 m-3 commentStyle p-1" v-for="comment in comments" :key="comment._id" >
+                                <div class="comment1 m-3 commentStyle p-1" v-for="comment in comments" :key="comment.id" >
                                     <div>
                                         <p class="font-weight-bold"> {{ JSON.parse(comment.user).name }}</p>
                                     </div>
@@ -84,7 +84,7 @@ data() {
       post: {},
     user: JSON.parse(localStorage.getItem("user")),
       comment: {
-        userId: localStorage.getItem("userId"),
+        userId: parseInt(localStorage.getItem("userId")),
         user: localStorage.getItem("user"),
         comment: "",
 
@@ -109,8 +109,8 @@ isAuthenticated() {
         window.location.href="#/login"
     }
 },
-    getOnePost(_id) {
-axios.get("http://localhost:3000/api/posts/comment/"+_id, { headers: {
+    getOnePost(id) {
+axios.get("http://localhost:3000/api/posts/comment/"+id, { headers: {
         authorization: "Bearer " + localStorage.getItem("token")}}).then((response) => {
         this.post = response.data;
          this.readPost(this.post);
@@ -164,7 +164,7 @@ if(!post.userRead.includes(this.user.id)){
       post: post,
       userId: this.user.id
   }
-  axios.post("http://localhost:3000/api/posts/" + post._id + "/read", data, { headers: {
+  axios.post("http://localhost:3000/api/posts/" + post.id + "/read", data, { headers: {
         authorization: "Bearer " + localStorage.getItem("token")}}).then((response) => {
           this.loadPosts()
           console.log(response.message)

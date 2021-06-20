@@ -16,11 +16,11 @@
                                     <label for="Password1">Password</label>
                                     <input type="password" class="form-control" id="Password1" placeholder="Password" v-model="form.password">
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="profilePicture">Choose a profile picture</label>
-                                  <!--  <input type="file" class="form-control-file" id="profilePicture"  @change="setImage">-->
+                                   <input type="file" class="form-control-file" id="profilePicture"  @change="setImage">
                                         <input type="hidden" v-model="form.profile">
-                                </div>
+                                </div>-->
 
                                 <div class="text-right">
                                    <button type="submit" class="btn btn-color" @click="register()">Register</button>

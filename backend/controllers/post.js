@@ -33,7 +33,7 @@ exports.createPost = (req, res, next) => {
 
 exports.getOnePost = (req, res, next) => {
     Post.findOne({
-        where: { id: req.body.id }
+        where: { id: req.params.id }
     }).then(
         (post) => {
             res.status(200).json(post);
@@ -52,7 +52,7 @@ exports.modifyPost = (req, res, next) => {
          message: req.file.filename
      });*/
     let post = Post.findOne({
-        where: { id: req.body.id }
+        where: { id: req.params.id }
     });
     if (req.file) {
         const url = req.protocol + '://' + req.get('host');
@@ -86,12 +86,12 @@ exports.modifyPost = (req, res, next) => {
 
 exports.deletePost = (req, res, next) => {
     Post.findOne({
-        where: { id: req.body.id }
+        where: { id: req.params.id }
     }).then(
         (post) => {
 
             if (post.imageUrl == undefined) {
-                Post.destroy().then(
+                post.destroy().then(
                     () => {
                         res.status(200).json({
                             message: 'Post deleted!'
@@ -107,7 +107,7 @@ exports.deletePost = (req, res, next) => {
             } else {
                 const filename = post.imageUrl.split('/images/')[1];
                 fs.unlink('images/' + filename, () => {
-                    Post.destroy().then(
+                    post.destroy().then(
                         () => {
                             res.status(200).json({
                                 message: 'Post deleted!'
@@ -192,7 +192,7 @@ exports.likePost = (req, res, next) => {
 
 exports.userRead = (req, res, next) => {
     Post.findOne({
-        where: { id: req.body.id }
+        where: { id: req.params.id }
     }).then(
         (post) => {
             post.userRead = JSON.parse(post.userRead)

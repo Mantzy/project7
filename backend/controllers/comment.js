@@ -28,19 +28,21 @@ exports.createComment = (req, res, next) => {
 };
 
 exports.getAllComments = (req, res, next) => {
-    Comment.find({
-            postId: req.params.id
-        }).sort({ _id: -1 })
-        .then(
+    Comment.findAll({
+        where: { postId: req.params.id },
+        order: [
+            ["createdAt", "DESC"]
+        ]
+    }).then(
 
-            (posts) => {
-                res.status(200).json(posts);
-            }
-        ).catch(
-            (error) => {
-                res.status(400).json({
-                    error: error
-                });
-            }
-        );
+        (posts) => {
+            res.status(200).json(posts);
+        }
+    ).catch(
+        (error) => {
+            res.status(400).json({
+                error: error
+            });
+        }
+    );
 };
