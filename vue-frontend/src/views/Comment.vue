@@ -22,7 +22,7 @@
                                     
                                 </div>
 
-                                <div class="col-3 mw-45 text-center brown-color"><h5><i class="far fa-eye "></i> <p>{{ JSON.parse(JSON.stringify(post.userRead)).length }}</p></h5></div>
+                                <div class="col-3 mw-45 text-center brown-color"><h5><i class="far fa-eye "></i> <p>{{ post.length }}</p></h5></div>
                                 <div class="col-3 mw-45">
                                     <button type="submit" class="btn btn-color" v-if="user.id == post.userId"> <router-link :to="{path: '/modify/'+post.id }" class="link-unstyled text-dark" v-if="user.id == post.userId"> Modify</router-link></button>
                                     <!-- <i class="fas fa-heart"></i>-->
@@ -95,8 +95,8 @@ data() {
 
   beforeMount(){
     this.isAuthenticated();
+    this.post = {}
     this.getOnePost(this.$route.params.id);
-
     this.getAllComments(this.$route.params.id);
    
 },
@@ -114,8 +114,8 @@ axios.get("http://localhost:3000/api/posts/comment/"+id, { headers: {
         authorization: "Bearer " + localStorage.getItem("token")}}).then((response) => {
         this.post = response.data;
          this.readPost(this.post);
-        
-
+      console.log(this.post.userRead.length)  
+this.post.length = this.post.userRead.length
 })
     },
 

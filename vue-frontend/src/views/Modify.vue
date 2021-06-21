@@ -88,7 +88,7 @@ const form = new FormData()
 
          axios.put("http://localhost:3000/api/posts/"+this.$route.params.id, form, { headers: {
         authorization: "Bearer " + localStorage.getItem("token")}})
-window.location.href="#/comment/"+this.$route.params.id;
+window.location.href="http://localhost:8080/index.html#/";
 
       },
 
