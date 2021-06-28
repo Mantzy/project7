@@ -53,7 +53,8 @@ data() {
   methods: {
        register() {
            axios.post("http://localhost:3000/api/auth/signup", this.form).then((response) => {
-        window.location.href="#/login"
+               
+        window.location.href="http://localhost:8080/"
                  console.log(response)
 
 
